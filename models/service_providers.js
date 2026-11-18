@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   service_providers.init({
     service_id: {
       type: DataTypes.STRING(36),
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
     },
     name: {
       type: DataTypes.STRING(100),

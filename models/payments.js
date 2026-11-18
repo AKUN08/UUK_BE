@@ -18,11 +18,13 @@ module.exports = (sequelize, DataTypes) => {
   payments.init({
     pay_id: {
       type: DataTypes.STRING(36),
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
     },
     bil_id: {
       type: DataTypes.STRING(36),
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
     },
     payment_proof: {
       type: DataTypes.STRING(255),
@@ -34,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     verified_by: {
       type: DataTypes.STRING(36),
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
     },
     verified_at: {
       type: DataTypes.DATE,

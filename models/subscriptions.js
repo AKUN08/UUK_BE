@@ -19,15 +19,18 @@ module.exports = (sequelize, DataTypes) => {
   subscriptions.init({
     sub_id: {
       type: DataTypes.STRING(36),
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
     },
     users_id: {
       type: DataTypes.STRING(36),
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
     },
     service_id: {
       type: DataTypes.STRING(36),
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
     },
     status: {
       type: DataTypes.ENUM('active', 'inactive'),

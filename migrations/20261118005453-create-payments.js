@@ -6,7 +6,8 @@ module.exports = {
       pay_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(36)
+        type: Sequelize.STRING(36),
+        defaultValue: Sequelize.UUIDV4
       },
       bil_id: {
         type: Sequelize.STRING(36),
@@ -15,6 +16,7 @@ module.exports = {
           key: 'bil_id',
         },
         allowNull: false,
+        defaultValue: Sequelize.UUIDV4
       },
       payment_proof: {
         type: Sequelize.STRING(255)
@@ -29,6 +31,7 @@ module.exports = {
           key: 'users_id',
         },
         allowNull: false,
+        defaultValue: Sequelize.UUIDV4
       },
       verified_at: {
         type: Sequelize.DATE

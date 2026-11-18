@@ -6,7 +6,8 @@ module.exports = {
       bil_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(36)
+        type: Sequelize.STRING(36),
+        defaultValue: Sequelize.UUIDV4
       },
       sub_id: {
         type: Sequelize.STRING(36),
@@ -15,6 +16,7 @@ module.exports = {
           key: 'sub_id',
         },
         allowNull: false,
+        defaultValue: Sequelize.UUIDV4
       },
       period_month: {
         type: Sequelize.INTEGER

@@ -6,7 +6,8 @@ module.exports = {
       sub_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING(36)
+        type: Sequelize.STRING(36),
+        defaultValue: Sequelize.UUIDV4
       },
        users_id: {
         type: Sequelize.STRING(36),
@@ -15,6 +16,7 @@ module.exports = {
           key: 'users_id',
         },
         allowNull: false,
+        defaultValue: Sequelize.UUIDV4
       },
       service_id: {
         type: Sequelize.STRING(36),
@@ -23,6 +25,7 @@ module.exports = {
           key: 'service_id',
         },
         allowNull: false,
+        defaultValue: Sequelize.UUIDV4
       },
       status: {
         type: Sequelize.ENUM('active', 'inactive')

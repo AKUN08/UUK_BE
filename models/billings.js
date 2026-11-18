@@ -18,11 +18,13 @@ module.exports = (sequelize, DataTypes) => {
   billings.init({
     bil_id: {
       type: DataTypes.STRING(36),
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
     },
     sub_id: {
       type: DataTypes.STRING(36),
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
     },
     period_month: {
       type: DataTypes.INTEGER,
