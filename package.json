@@ -1,0 +1,22 @@
+{
+  "name": "ukk-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.4.0",
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "express-validator": "^7.3.2",
+    "md5": "^2.3.0",
+    "multer": "^2.5.0",
+    "nodemon": "^3.1.14"
+  }
+}
