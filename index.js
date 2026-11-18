@@ -24,6 +24,6 @@ app.use(`/auth`, authRoute)
 
 
 app.listen(PORT, () => {
-    console.log(`Server of Ticket Sales runs on port ${PORT}`)
+    console.log(`Server of internet billing runs on port ${PORT}`)
 })
 app.use(express.static(__dirname))

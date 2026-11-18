@@ -13,6 +13,8 @@ app.get("/:key", userController.finduser)
 
 app.post("/", userController.adduser)
 
+app.post("/register", userController.register)
+
 app.put("/:id", userController.updateuser)
 
 app.delete("/:id", userController.deleteuser)

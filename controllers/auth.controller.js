@@ -3,12 +3,13 @@ const md5 = require(`md5`)
 /** load library jsonwebtoken */
 const jwt = require(`jsonwebtoken`)
 /** load model of user */
-const userModel = require(`../models/index`).user
+const userModel = require(`../models/index`).users
 /** define secret key as signature */
 const secret = `mokleters`
 /** create function to handle authenticating process */
 const authenticate = async (request, response) => {
     let dataLogin = {
+        name: request.body.name,
         email: request.body.email,
         password: md5(request.body.password)
     }

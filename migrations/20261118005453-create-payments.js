@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING(255)
       },
       status: {
-        type: Sequelize.ENUM('pending', 'paid', 'failed')
+        type: Sequelize.ENUM('pending','approved','rejected')
       },
       verified_by: {
         type: Sequelize.STRING(36),

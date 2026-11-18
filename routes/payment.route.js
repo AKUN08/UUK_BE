@@ -5,17 +5,22 @@ const app = express()
 app.use(express.json())
 
 const paymentController = require(`../controllers/payments.controller`)
+const { authorize } = require('../controllers/auth.controller')
+
+/** load function from role-validation */
+const {IsCustomer, IsAdmin} = require('../middlewares/role_validation')
+
 /** load function from auth-controller */
 
-app.get("/",paymentController.getallpayment)
+app.get("/",authorize,paymentController.getallpayment)
 
-app.get("/:key", paymentController.findpayment)
+app.get("/:key",authorize,paymentController.findpayment)
 
-app.post("/", paymentController.addpayment)
+app.post("/", authorize, paymentController.addpayment)
 
-app.put("/:id", paymentController.updatepayment)
+app.put("/:pay_id", authorize, IsAdmin,paymentController.updatepayment)
 
-app.delete("/:id", paymentController.deletepayment)
+app.delete("/:pay_id", authorize, paymentController.deletepayment)
 
 
 module.exports = app

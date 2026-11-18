@@ -1,14 +1,14 @@
 
 exports.IsUser = async (request, response, next) => {
     console.log(request.user.role)
-    if (request.user.role == "user") {
+    if (request.user.role == "customer") {
       next();
     }
     else{
         return response.status(401).json({
             success: false,
             auth: false,
-            message: `No no kamu bukan user yang valid`
+            message: `No no kamu bukan customer yang valid`
         })
     }
   }

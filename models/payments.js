@@ -31,17 +31,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     status: {
-      type: DataTypes.ENUM('pending', 'approved', 'rejected'),
+      type: DataTypes.ENUM('pending','approved','rejected'),
       allowNull: false
     },
     verified_by: {
       type: DataTypes.STRING(36),
-      allowNull: false,
+      allowNull: true,
       defaultValue: DataTypes.UUIDV4
     },
     verified_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     createdAt: {
       type: DataTypes.DATE,

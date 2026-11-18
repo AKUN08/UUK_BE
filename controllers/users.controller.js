@@ -149,7 +149,7 @@ exports.register = (request, response) => {
         name: request.body.name,
         email: request.body.email,
         password: md5(request.body.password),
-        role: `user`
+        role: `customer`
     }
     userModel.create(newuser)
         .then(result => {

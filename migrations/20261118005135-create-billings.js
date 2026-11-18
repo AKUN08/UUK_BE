@@ -31,7 +31,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       status: {
-        type: Sequelize.ENUM('pending', 'paid', 'failed')
+        type: Sequelize.ENUM('unpaid', 'waiting_verification', 'paid')
       },
       createdAt: {
         allowNull: false,
