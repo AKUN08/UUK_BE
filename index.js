@@ -13,12 +13,14 @@ const subsRoute = require(`./routes/subs.route`)
 const servicesRoute = require('./routes/services.route')
 const paymentRoute = require('./routes/payment.route')
 const billingRoute = require('./routes/billing.route')
+const authRoute = require(`./routes/auth.route`)
 
 app.use(`/user`, usersRoute)
 app.use(`/sub`, subsRoute)
 app.use(`/service`, servicesRoute)
 app.use(`/payment`, paymentRoute)
 app.use(`/billing`, billingRoute)
+app.use(`/auth`, authRoute)
 
 
 app.listen(PORT, () => {
