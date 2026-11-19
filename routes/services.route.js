@@ -16,11 +16,11 @@ app.get("/",authorize,serviceController.getallservices)
 
 app.get("/:key",authorize, serviceController.findservice)
 
-app.post("/",authorize, serviceController.addservice)
+app.post("/",authorize, IsAdmin, serviceController.addservice)
 
-app.put("/:id",authorize, serviceController.updateservice)
+app.put("/:id",authorize, IsAdmin, serviceController.updateservice)
 
-app.delete("/:id",authorize, serviceController.deleteservice)
+app.delete("/:id",authorize, IsAdmin, serviceController.deleteservice)
 
 
 module.exports = app

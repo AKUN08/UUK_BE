@@ -16,11 +16,11 @@ app.get("/",authorize,billingsController.getallbillings)
 
 app.get("/:key",authorize, billingsController.findbilling)
 
-app.post("/", authorize, billingsController.addbilling)
+app.post("/", authorize,IsAdmin, billingsController.addbilling)
 
-app.put("/:id", authorize, billingsController.updatebilling)
+app.put("/:id", authorize, IsAdmin, billingsController.updatebilling)
 
-app.delete("/:id", authorize, billingsController.deletebilling)
+app.delete("/:id", authorize, IsAdmin, billingsController.deletebilling)
 
 
 module.exports = app

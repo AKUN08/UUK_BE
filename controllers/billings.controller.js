@@ -1,5 +1,6 @@
 const billingmodel = require(`../models/index`).billings
 const subscriptionmodel = require(`../models/index`).subscriptions
+const servicemodel = require(`../models/index`).service_providers
 const Op = require(`sequelize`).Op
 
 exports.getallbillings = async (request, response) => {
@@ -58,22 +59,38 @@ exports.addbilling = async (request, response) => {
 
         // Cek duplikasi tagihan pada subscription dan periode yang sama
         let existBilling = await billingmodel.findOne({
-            where: { sub_id : sub_id, period_month: period_month, period_year: period_year }
+            where: { sub_id: sub_id, period_month: period_month, period_year: period_year }
         })
 
-        if(existBilling){
+        if (existBilling) {
             return response.json({
                 success: false,
                 message: `Billing for this subscription in this period already exists`
             })
         }
 
+        let subscription = await subscriptionmodel.findByPk(sub_id)
+        if (!subscription) {
+            return response.json({
+                success: false,
+                message: `Subscription not found`
+            })
+        }
+
+        let service = await servicemodel.findByPk(subscription.service_id)
+        if (!service) {
+            return response.json({
+                success: false,
+                message: `Service provider not found`
+            })
+        }
+
         let newbilling = {
-            sub_id:request.body.sub_id,
-            period_month:request.body.period_month,
-            period_year:request.body.period_year,
-            amount:request.body.amount,
-            due_date:request.body.due_date,
+            sub_id: sub_id,
+            period_month: period_month,
+            period_year: period_year,
+            amount: service.price_per_month,
+            due_date: request.body.due_date,
             status: "UNPAID"
         }
 
@@ -83,7 +100,7 @@ exports.addbilling = async (request, response) => {
             data: result,
             message: `New billing has been created`
         })
-    } catch(error) {
+    } catch (error) {
         return response.json({
             success: false,
             message: error.message
@@ -120,7 +137,7 @@ exports.updatebilling = (request, response) => {
 exports.deletebilling = (request, response) => {
     let bil_id = request.params.id
 
-    billingmodel.destroy({ where: { id: bil_id } })
+    billingmodel.destroy({ where: { bil_id: bil_id } })
         .then(result => {
             return response.json({
                 success: true,

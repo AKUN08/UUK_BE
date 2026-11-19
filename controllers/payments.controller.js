@@ -109,8 +109,7 @@ exports.updatepayment = async (request, response) => {
 
            await paymentModel.update(datapayment, { where: { pay_id: pay_id } })
 
-            // 2. Cek apakah data billing ditemukan melalui relasi
-            console.log("Data Billing:", payment.billing); // Cek di terminal/console VS Code
+            console.log("Data Billing:", payment.billing); 
 
             if (payment.billing) {
                 let sub_id = payment.billing.sub_id;
@@ -118,12 +117,12 @@ exports.updatepayment = async (request, response) => {
                 let currentStatus = datapayment.status;
 
                 if (currentStatus === "APPROVED") {
-                    await billingModel.update({ status: "PAID" }, { where: { bil_id: payment.bil_id } });
+                    await billingModel.update({ status: "PAID" }, { where: { bil_id: bil_id } });
                     if (sub_id) {
                         await subscriptionModel.update({ status: "ACTIVE" }, { where: { sub_id: sub_id } });
                     }
                 } else if (currentStatus === "REJECTED") {
-                    await billingModel.update({ status: "UNPAID" }, { where: { bil_id: payment.bil_id } });
+                    await billingModel.update({ status: "UNPAID" }, { where: { bil_id: bil_id } });
                     if (sub_id) {
                         await subscriptionModel.update({ status: "INACTIVE" }, { where: { sub_id: sub_id } });
                     }

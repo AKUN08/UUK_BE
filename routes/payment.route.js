@@ -20,7 +20,7 @@ app.post("/", authorize, paymentController.addpayment)
 
 app.put("/:pay_id", authorize, IsAdmin,paymentController.updatepayment)
 
-app.delete("/:pay_id", authorize, paymentController.deletepayment)
+app.delete("/:pay_id", authorize, IsAdmin, paymentController.deletepayment)
 
 
 module.exports = app

@@ -5,19 +5,20 @@ const app = express()
 app.use(express.json())
 
 const userController = require(`../controllers/users.controller`)
-/** load function from auth-controller */
 
-app.get("/",userController.getalluser)
+const {IsCustomer, IsAdmin} = require('../middlewares/role_validation')
 
-app.get("/:key", userController.finduser)
+app.get("/", userController.getalluser)
 
-app.post("/", userController.adduser)
+app.get("/:key",IsAdmin, userController.finduser)
+
+app.post("/",IsAdmin, userController.adduser)
 
 app.post("/register", userController.register)
 
-app.put("/:id", userController.updateuser)
+app.put("/:id",IsAdmin, userController.updateuser)
 
-app.delete("/:id", userController.deleteuser)
+app.delete("/:id",IsAdmin, userController.deleteuser)
 
 app.put("/reset/:id", userController.resetpassword)
 
